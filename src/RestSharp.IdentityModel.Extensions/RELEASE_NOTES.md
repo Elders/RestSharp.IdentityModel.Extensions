@@ -1,3 +1,6 @@
+#### 0.1.2 - 19.04.2017
+* Version bump 
+
 #### 0.1.1 - 19.04.2017
 * Fixes wrong namespace
 
