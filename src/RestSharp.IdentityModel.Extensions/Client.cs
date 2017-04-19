@@ -3,13 +3,13 @@ using RestSharp.IdentityModel.Extensions.Infrastructure;
 
 namespace RestSharp.IdentityModel.Extensions
 {
-    public class Client
+    public class RestSharpIdentityModelClient
     {
         Options options;
         Authenticator authenticator;
         IRestClient client;
 
-        public Client(Options options, Authenticator authenticator = null)
+        public RestSharpIdentityModelClient(Options options, Authenticator authenticator = null)
         {
             if (ReferenceEquals(null, options)) throw new ArgumentNullException(nameof(options));
             this.options = options;

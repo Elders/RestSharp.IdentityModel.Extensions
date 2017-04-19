@@ -1,3 +1,6 @@
+#### 0.1.4 - 19.04.2017
+* Changes the client name to RestSharpIdentityModelClient
+
 #### 0.1.3 - 19.04.2017
 * Version bump 
 
