@@ -1,3 +1,6 @@
+#### 0.1.5 - 19.04.2017
+* Downgrades IdentityModel to 1.13.1
+
 #### 0.1.4 - 19.04.2017
 * Changes the client name to RestSharpIdentityModelClient
 
