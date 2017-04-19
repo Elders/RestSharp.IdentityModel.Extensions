@@ -1,8 +1,7 @@
 ﻿using System;
-using RestSharp;
 using RestSharp.IdentityModel.Extensions.Infrastructure;
 
-namespace NewGen.Api.Client
+namespace RestSharp.IdentityModel.Extensions
 {
     public class Client
     {
