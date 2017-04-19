@@ -49,6 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Packages\LibLog.4.2\LibLog.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="Infrastructure\Authenticator.cs" />
+    <Compile Include="Infrastructure\NewtonsoftJsonSerializer.cs" />
+    <Compile Include="Infrastructure\RestClientExtensions.cs" />
+    <Compile Include="Infrastructure\SerializerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
