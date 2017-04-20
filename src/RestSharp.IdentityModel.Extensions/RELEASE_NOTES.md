@@ -1,3 +1,6 @@
+#### 0.1.6 - 20.04.2017
+* Downgrades to .net framework 4.6.1
+
 #### 0.1.5 - 19.04.2017
 * Downgrades IdentityModel to 1.13.1
 
