@@ -62,7 +62,7 @@ namespace RestSharp.IdentityModel.Extensions.Infrastructure
         {
             var client = new TokenClient(authorizationEndpoint.AbsoluteUri, options.ClientId, options.ClientSecret, AuthenticationStyle.BasicAuthentication);
 
-            TokenResponse tokenResponse = await client.RequestResourceOwnerPasswordAsync(options.Username, options.Password).ConfigureAwait(false);
+            TokenResponse tokenResponse = await client.RequestResourceOwnerPasswordAsync(options.Username, options.Password, options.Scope).ConfigureAwait(false);
             return new Authenticator(this, tokenResponse);
         }
 
@@ -80,7 +80,7 @@ namespace RestSharp.IdentityModel.Extensions.Infrastructure
                 AuthorizationEndpointRelativePath = authorizationEndpointRelativePath;
             }
 
-            public static Options UseResourceOwnerPassword(Uri authority, string authorizationEndpointRelativePath, string clientId, string clientSecret, string username, string password)
+            public static Options UseResourceOwnerPassword(Uri authority, string authorizationEndpointRelativePath, string clientId, string clientSecret, string username, string password, string scope = "")
             {
                 if (ReferenceEquals(null, authority) == true) throw new ArgumentNullException(nameof(authority));
                 if (string.IsNullOrEmpty(authorizationEndpointRelativePath) == true) throw new ArgumentNullException(nameof(authorizationEndpointRelativePath));
@@ -89,7 +89,7 @@ namespace RestSharp.IdentityModel.Extensions.Infrastructure
                 if (string.IsNullOrEmpty(username) == true) throw new ArgumentNullException(nameof(username));
                 if (string.IsNullOrEmpty(password) == true) throw new ArgumentNullException(nameof(password));
 
-                return new Options(authority, authorizationEndpointRelativePath, clientId, clientSecret, string.Empty, username, password, AuthenticationFlow.ResourceOwnerPassword);
+                return new Options(authority, authorizationEndpointRelativePath, clientId, clientSecret, scope, username, password, AuthenticationFlow.ResourceOwnerPassword);
             }
 
             public static Options UseClientCredentials(Uri authority, string authorizationEndpointRelativePath, string clientId, string clientSecret, string scope)
