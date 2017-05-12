@@ -1,3 +1,6 @@
+#### 0.1.10 - 12.05.2017
+* Fixes oauth token endpoint
+
 #### 0.1.9 - 12.05.2017
 * Breaking changes without major release. Sorry.
 
