@@ -1,4 +1,7 @@
-#### 0.1.8 - 11.05.2017
+#### 0.1.9 - 12.05.2017
+* Breaking changes without major release. Sorry.
+
+#### 0.1.8 - 12.05.2017
 * Change the default namespaces
 
 #### 0.1.7 - 08.05.2017

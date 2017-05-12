@@ -80,7 +80,7 @@ namespace RestSharp
                 AuthorizationEndpointRelativePath = authorizationEndpointRelativePath;
             }
 
-            public static Options UseResourceOwnerPassword(Uri authority, string authorizationEndpointRelativePath, string clientId, string clientSecret, string username, string password, string scope = "")
+            public static Options UseResourceOwnerPassword(Uri authority, string clientId, string clientSecret, string username, string password, string scope, string authorizationEndpointRelativePath = "auth/token")
             {
                 if (ReferenceEquals(null, authority) == true) throw new ArgumentNullException(nameof(authority));
                 if (string.IsNullOrEmpty(authorizationEndpointRelativePath) == true) throw new ArgumentNullException(nameof(authorizationEndpointRelativePath));
@@ -92,7 +92,7 @@ namespace RestSharp
                 return new Options(authority, authorizationEndpointRelativePath, clientId, clientSecret, scope, username, password, AuthenticationFlow.ResourceOwnerPassword);
             }
 
-            public static Options UseClientCredentials(Uri authority, string authorizationEndpointRelativePath, string clientId, string clientSecret, string scope)
+            public static Options UseClientCredentials(Uri authority, string clientId, string clientSecret, string scope, string authorizationEndpointRelativePath = "auth/token")
             {
                 if (ReferenceEquals(null, authority) == true) throw new ArgumentNullException(nameof(authority));
                 if (string.IsNullOrEmpty(authorizationEndpointRelativePath) == true) throw new ArgumentNullException(nameof(authorizationEndpointRelativePath));
