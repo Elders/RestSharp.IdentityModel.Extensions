@@ -1,7 +1,6 @@
 ﻿using System;
-using RestSharp.IdentityModel.Extensions.Infrastructure;
 
-namespace RestSharp.IdentityModel.Extensions
+namespace RestSharp
 {
     public class RestSharpIdentityModelClient
     {

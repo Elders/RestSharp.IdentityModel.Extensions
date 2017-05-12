@@ -7,7 +7,7 @@
     <ProjectGuid>{95DA6427-1FB3-4ACE-8A96-31E4AE489BF6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RestSharp.IdentityModel.Extensions</RootNamespace>
+    <RootNamespace>RestSharp</RootNamespace>
     <AssemblyName>RestSharp.IdentityModel.Extensions</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -52,10 +52,10 @@
   <ItemGroup>
     <Compile Include="App_Packages\LibLog.4.2\LibLog.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="Infrastructure\Authenticator.cs" />
-    <Compile Include="Infrastructure\NewtonsoftJsonSerializer.cs" />
-    <Compile Include="Infrastructure\RestClientExtensions.cs" />
-    <Compile Include="Infrastructure\SerializerFactory.cs" />
+    <Compile Include="Authenticator.cs" />
+    <Compile Include="NewtonsoftJsonSerializer.cs" />
+    <Compile Include="RestClientExtensions.cs" />
+    <Compile Include="SerializerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

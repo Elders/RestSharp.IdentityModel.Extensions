@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace RestSharp.IdentityModel.Extensions.Infrastructure
+namespace RestSharp
 {
     public static class SerializerFactory
     {

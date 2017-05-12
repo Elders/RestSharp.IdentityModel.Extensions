@@ -40,23 +40,23 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "RestSharp.IdentityModel.Extensions.Logging")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Scope = "member", Target = "RestSharp.IdentityModel.Extensions.Logging.Logger.#Invoke(RestSharp.IdentityModel.Extensions.Logging.LogLevel,System.Func`1<System.String>,System.Exception,System.Object[])")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "RestSharp.Logging")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Scope = "member", Target = "RestSharp.Logging.Logger.#Invoke(RestSharp.Logging.LogLevel,System.Func`1<System.String>,System.Exception,System.Object[])")]
 
 // If you copied this file manually, you need to change all "YourRootNameSpace" so not to clash with other libraries
 // that use LibLog
 #if LIBLOG_PROVIDERS_ONLY
-namespace RestSharp.IdentityModel.Extensions.LibLog
+namespace RestSharp.LibLog
 #else
-namespace RestSharp.IdentityModel.Extensions.Logging
+namespace RestSharp.Logging
 #endif
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 #if LIBLOG_PROVIDERS_ONLY
-    using RestSharp.IdentityModel.Extensions.LibLog.LogProviders;
+    using RestSharp.LibLog.LogProviders;
 #else
-    using RestSharp.IdentityModel.Extensions.Logging.LogProviders;
+    using RestSharp.Logging.LogProviders;
 #endif
     using System;
 #if !LIBLOG_PROVIDERS_ONLY
@@ -714,9 +714,9 @@ namespace RestSharp.IdentityModel.Extensions.Logging
 }
 
 #if LIBLOG_PROVIDERS_ONLY
-namespace RestSharp.IdentityModel.Extensions.LibLog.LogProviders
+namespace RestSharp.LibLog.LogProviders
 #else
-namespace RestSharp.IdentityModel.Extensions.Logging.LogProviders
+namespace RestSharp.Logging.LogProviders
 #endif
 {
     using System;

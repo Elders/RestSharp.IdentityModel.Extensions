@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using RestSharp.IdentityModel.Extensions.Logging;
+using RestSharp.Logging;
 
-namespace RestSharp.IdentityModel.Extensions.Infrastructure
+namespace RestSharp
 {
-    public static class RestClientExtensions
+    public static class RestSharpClientExtensions
     {
-        static ILog log = LogProvider.GetLogger(typeof(RestClientExtensions));
+        static ILog log = LogProvider.GetLogger(typeof(RestSharpClientExtensions));
 
         public static Task<IRestResponse> ExecuteAsync(this IRestClient client, IRestRequest request)
         {

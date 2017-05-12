@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
 
-namespace RestSharp.IdentityModel.Extensions.Infrastructure
+namespace RestSharp
 {
     public interface IJsonSerializer : RestSharp.Serializers.ISerializer, RestSharp.Deserializers.IDeserializer { }
 

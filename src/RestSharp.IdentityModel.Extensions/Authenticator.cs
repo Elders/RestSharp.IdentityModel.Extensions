@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using IdentityModel.Client;
 using Newtonsoft.Json.Linq;
 
-namespace RestSharp.IdentityModel.Extensions.Infrastructure
+namespace RestSharp
 {
     public sealed class Authenticator
     {

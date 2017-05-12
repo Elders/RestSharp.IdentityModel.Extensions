@@ -1,3 +1,6 @@
+#### 0.1.8 - 11.05.2017
+* Change the default namespaces
+
 #### 0.1.7 - 08.05.2017
 * Add the ability to set the scopes when using resource owner flow
 
