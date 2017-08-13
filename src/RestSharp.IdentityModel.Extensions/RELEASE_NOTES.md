@@ -1,3 +1,6 @@
+#### 0.1.11 - 13.08.2017
+* Adds ability to specify parameters when creating rest request
+
 #### 0.1.10 - 12.05.2017
 * Fixes oauth token endpoint
 

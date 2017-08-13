@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RestSharp
 {
@@ -34,6 +35,11 @@ namespace RestSharp
             return Execute<T>(CreateRestRequest(resource, method, body, inlineAuthenticator));
         }
 
+        public IRestResponse<T> Execute<T>(string resource, Method method, object body, List<Parameter> parameters, Authenticator inlineAuthenticator = null) where T : new()
+        {
+            return Execute<T>(CreateRestRequest(resource, method, body, parameters, inlineAuthenticator));
+        }
+
         public IRestRequest CreateRestRequest(string resource, Method method, object body, Authenticator inlineAuthenticator = null)
         {
             var request = new RestRequest(resource, method);
@@ -41,6 +47,16 @@ namespace RestSharp
             request.JsonSerializer = options.JsonSerializer;
             request.AddAuthorizationBearerHeader(Eval(inlineAuthenticator));
             request.AddJsonBody(body);
+            return request;
+        }
+
+        public IRestRequest CreateRestRequest(string resource, Method method, object body, List<Parameter> parameters, Authenticator inlineAuthenticator = null)
+        {
+            var request = CreateRestRequest(resource, method, body, inlineAuthenticator);
+            foreach (var par in parameters)
+            {
+                request.AddParameter(par);
+            }
             return request;
         }
 
