@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace RestSharp
 {
@@ -27,21 +28,65 @@ namespace RestSharp
 
         public IRestResponse<T> Execute<T>(IRestRequest request) where T : new()
         {
+            if (ReferenceEquals(null, request) == true) throw new ArgumentNullException(nameof(request));
+
             return client.Execute<T>(request);
         }
 
         public IRestResponse<T> Execute<T>(string resource, Method method, object body, Authenticator inlineAuthenticator = null) where T : new()
         {
+            if (string.IsNullOrEmpty(resource) == true) throw new ArgumentNullException(nameof(resource));
+            if (ReferenceEquals(null, method) == true) throw new ArgumentNullException(nameof(method));
+
             return Execute<T>(CreateRestRequest(resource, method, body, inlineAuthenticator));
         }
 
         public IRestResponse<T> Execute<T>(string resource, Method method, object body, List<Parameter> parameters, Authenticator inlineAuthenticator = null) where T : new()
         {
+            if (string.IsNullOrEmpty(resource) == true) throw new ArgumentNullException(nameof(resource));
+            if (ReferenceEquals(null, parameters) == true) throw new ArgumentNullException(nameof(parameters));
+            if (ReferenceEquals(null, method) == true) throw new ArgumentNullException(nameof(method));
+
             return Execute<T>(CreateRestRequest(resource, method, body, parameters, inlineAuthenticator));
+        }
+
+        public IRestResponse<T> ExecuteGet<T>(string resource, object body, List<Parameter> parameters, Authenticator inlineAuthenticator = null) where T : new()
+        {
+            if (string.IsNullOrEmpty(resource) == true) throw new ArgumentNullException(nameof(resource));
+            if (ReferenceEquals(null, parameters) == true) throw new ArgumentNullException(nameof(parameters));
+
+            var parametersFromBody = ExtractParameters(body);
+            return Execute<T>(CreateRestRequest(resource, Method.GET, body, parameters, inlineAuthenticator));
+        }
+
+        List<Parameter> ExtractParameters(object body)
+        {
+            var paramethers = new List<Parameter>();
+
+            if (ReferenceEquals(null, body) == true)
+                return paramethers;
+
+            var props = new List<PropertyInfo>(body.GetType().GetProperties());
+            foreach (var prop in props)
+            {
+                object propValue = prop.GetValue(body, null);
+                var parameter = new Parameter
+                {
+                    Name = prop.Name,
+                    Value = propValue,
+                    Type = ParameterType.QueryString
+                };
+                paramethers.Add(parameter);
+            }
+
+            return paramethers;
         }
 
         public IRestRequest CreateRestRequest(string resource, Method method, object body, Authenticator inlineAuthenticator = null)
         {
+            if (string.IsNullOrEmpty(resource) == true) throw new ArgumentNullException(nameof(resource));
+            if (ReferenceEquals(null, method) == true) throw new ArgumentNullException(nameof(method));
+
             var request = new RestRequest(resource, method);
             request.RequestFormat = DataFormat.Json;
             request.JsonSerializer = options.JsonSerializer;
@@ -52,6 +97,10 @@ namespace RestSharp
 
         public IRestRequest CreateRestRequest(string resource, Method method, object body, List<Parameter> parameters, Authenticator inlineAuthenticator = null)
         {
+            if (string.IsNullOrEmpty(resource) == true) throw new ArgumentNullException(nameof(resource));
+            if (ReferenceEquals(null, parameters) == true) throw new ArgumentNullException(nameof(parameters));
+            if (ReferenceEquals(null, method) == true) throw new ArgumentNullException(nameof(method));
+
             var request = CreateRestRequest(resource, method, body, inlineAuthenticator);
             foreach (var par in parameters)
             {

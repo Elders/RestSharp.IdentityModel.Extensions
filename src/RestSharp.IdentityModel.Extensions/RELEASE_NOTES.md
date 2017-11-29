@@ -1,3 +1,7 @@
+#### 0.1.12 - 30.11.2017
+* Adds null checks
+* Adds execute get with auto mapping of parameters
+
 #### 0.1.11 - 13.08.2017
 * Adds ability to specify parameters when creating rest request
 
