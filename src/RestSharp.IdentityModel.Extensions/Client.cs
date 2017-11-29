@@ -56,6 +56,7 @@ namespace RestSharp
             if (ReferenceEquals(null, parameters) == true) throw new ArgumentNullException(nameof(parameters));
 
             var parametersFromBody = ExtractParameters(body);
+            parameters.AddRange(parametersFromBody);
             return Execute<T>(CreateRestRequest(resource, Method.GET, body, parameters, inlineAuthenticator));
         }
 

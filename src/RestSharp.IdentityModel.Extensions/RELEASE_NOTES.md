@@ -1,3 +1,6 @@
+#### 0.1.13 - 30.11.2017
+* Fixes passing of parameters when executing get request
+
 #### 0.1.12 - 30.11.2017
 * Adds null checks
 * Adds execute get with auto mapping of parameters
