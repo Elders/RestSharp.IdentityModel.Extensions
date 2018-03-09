@@ -1,3 +1,6 @@
+#### 0.1.14 - 09.03.2018
+* Updates packages
+
 #### 0.1.13 - 30.11.2017
 * Fixes passing of parameters when executing get request
 
