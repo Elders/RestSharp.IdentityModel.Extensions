@@ -9,21 +9,21 @@ namespace RestSharp
     public sealed class Authenticator
     {
         readonly Uri authorizationEndpoint;
-        readonly Options options;
+        public Options TheOptions { get; private set; }
 
         TokenResponse current;
 
         public Authenticator(Options options)
         {
             this.authorizationEndpoint = new Uri(options.Authority, options.AuthorizationEndpointRelativePath);
-            this.options = options;
+            this.TheOptions = options;
             current = new TokenResponse(HttpStatusCode.Unauthorized, "Unauthorized", "Unauthorized");
         }
 
         Authenticator(Authenticator authenticator, TokenResponse tokenResponse)
         {
-            this.authorizationEndpoint = new Uri(authenticator.options.Authority, authenticator.options.AuthorizationEndpointRelativePath);
-            this.options = authenticator.options;
+            this.authorizationEndpoint = new Uri(authenticator.TheOptions.Authority, authenticator.TheOptions.AuthorizationEndpointRelativePath);
+            this.TheOptions = authenticator.TheOptions;
             current = tokenResponse;
             InitializedAt = DateTime.UtcNow;
         }
@@ -52,17 +52,17 @@ namespace RestSharp
 
         public async Task<Authenticator> GetClientCredentialsAuthenticatorAsync()
         {
-            var client = new TokenClient(authorizationEndpoint.AbsoluteUri, options.ClientId, options.ClientSecret, AuthenticationStyle.BasicAuthentication);
+            var client = new TokenClient(authorizationEndpoint.AbsoluteUri, TheOptions.ClientId, TheOptions.ClientSecret, AuthenticationStyle.BasicAuthentication);
 
-            TokenResponse tokenResponse = await client.RequestClientCredentialsAsync(options.Scope).ConfigureAwait(false);
+            TokenResponse tokenResponse = await client.RequestClientCredentialsAsync(TheOptions.Scope, TheOptions.Extras).ConfigureAwait(false);
             return new Authenticator(this, tokenResponse);
         }
 
         public async Task<Authenticator> GetResourceOwnerAuthenticatorAsync()
         {
-            var client = new TokenClient(authorizationEndpoint.AbsoluteUri, options.ClientId, options.ClientSecret, AuthenticationStyle.BasicAuthentication);
+            var client = new TokenClient(authorizationEndpoint.AbsoluteUri, TheOptions.ClientId, TheOptions.ClientSecret, AuthenticationStyle.BasicAuthentication);
 
-            TokenResponse tokenResponse = await client.RequestResourceOwnerPasswordAsync(options.Username, options.Password, options.Scope).ConfigureAwait(false);
+            TokenResponse tokenResponse = await client.RequestResourceOwnerPasswordAsync(TheOptions.Username, TheOptions.Password, TheOptions.Scope, TheOptions.Extras).ConfigureAwait(false);
             return new Authenticator(this, tokenResponse);
         }
 
@@ -119,6 +119,8 @@ namespace RestSharp
 
             public string Password { get; private set; }
 
+            public object Extras { get; set; }
+
             public AuthenticationFlow AuthenticationFlow { get; private set; }
         }
 
@@ -130,7 +132,7 @@ namespace RestSharp
 
         public AuthenticationFlow GetAuthenticationFlow()
         {
-            return options.AuthenticationFlow;
+            return TheOptions.AuthenticationFlow;
         }
     }
 }

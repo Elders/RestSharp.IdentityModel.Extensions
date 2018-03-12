@@ -1,3 +1,6 @@
+#### 1.0.1 - 12.03.2018
+* Adds ability to shoot yourself in the foot
+
 #### 1.0.0 - 12.03.2018
 * Converts to new project files
 
