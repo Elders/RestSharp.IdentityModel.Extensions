@@ -17,7 +17,7 @@ namespace RestSharp
         {
             this.authorizationEndpoint = new Uri(options.Authority, options.AuthorizationEndpointRelativePath);
             this.options = options;
-            current = new TokenResponse(HttpStatusCode.Unauthorized, "Unauthorized");
+            current = new TokenResponse(HttpStatusCode.Unauthorized, "Unauthorized", "Unauthorized");
         }
 
         Authenticator(Authenticator authenticator, TokenResponse tokenResponse)
