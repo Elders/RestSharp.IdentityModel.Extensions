@@ -52,6 +52,17 @@ namespace RestSharp
             }
         }
 
+        public T Deserialize<T>(string content)
+        {
+            using (var stringReader = new StringReader(content))
+            {
+                using (var jsonTextReader = new JsonTextReader(stringReader))
+                {
+                    return serializer.Deserialize<T>(jsonTextReader);
+                }
+            }
+        }
+
         public static IJsonSerializer Default()
         {
             return new NewtonsoftJsonSerializer(SerializerFactory.GetSerializer());

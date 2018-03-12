@@ -1,3 +1,6 @@
+#### 1.0.0 - 12.03.2018
+* Converts to new project files
+
 #### 0.1.14 - 09.03.2018
 * Updates packages
 
