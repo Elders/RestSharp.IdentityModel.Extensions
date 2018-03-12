@@ -51,7 +51,18 @@ namespace RestSharp
 
         public class Options
         {
-            Options(Uri authority, string authorizationEndpointRelativePath, string clientId, string clientSecret, string scope, string username, string password, AuthenticationFlow authenticationFlow)
+            /// <summary>
+            /// No validations are performed using this constructor
+            /// </summary>
+            /// <param name="authority"></param>
+            /// <param name="authorizationEndpointRelativePath"></param>
+            /// <param name="clientId"></param>
+            /// <param name="clientSecret"></param>
+            /// <param name="scope"></param>
+            /// <param name="username"></param>
+            /// <param name="password"></param>
+            /// <param name="authenticationFlow"></param>
+            public Options(Uri authority, string authorizationEndpointRelativePath, string clientId, string clientSecret, string scope, string username, string password, AuthenticationFlow authenticationFlow)
             {
                 Authority = authority;
                 ClientId = clientId;
@@ -81,7 +92,7 @@ namespace RestSharp
                 if (string.IsNullOrEmpty(authorizationEndpointRelativePath) == true) throw new ArgumentNullException(nameof(authorizationEndpointRelativePath));
                 if (string.IsNullOrEmpty(clientId) == true) throw new ArgumentNullException(nameof(clientId));
                 if (string.IsNullOrEmpty(clientSecret) == true) throw new ArgumentNullException(nameof(clientSecret));
-                if (scope == null) throw new ArgumentNullException(nameof(scope));
+                if (ReferenceEquals(null, scope) == true) throw new ArgumentNullException(nameof(scope));
                 return new Options(authority, authorizationEndpointRelativePath, clientId, clientSecret, scope, string.Empty, string.Empty, AuthenticationFlow.ClientCredentials);
             }
 

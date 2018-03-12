@@ -40,5 +40,14 @@ namespace RestSharp
 
             return new Authenticator(authenticator, tokenResponse);
         }
+
+        public static async Task<Authenticator> RefreshTokenAsync(this Authenticator authenticator, string refreshToken = null)
+        {
+            var options = authenticator.TheOptions;
+
+            var client = new TokenClient(options.Authority.AbsolutePath, options.ClientId, options.ClientSecret, AuthenticationStyle.BasicAuthentication);
+            TokenResponse tokenResponse = await client.RequestRefreshTokenAsync(refreshToken ?? authenticator.RefreshToken).ConfigureAwait(false);
+            return new Authenticator(authenticator, tokenResponse);
+        }
     }
 }

@@ -1,3 +1,6 @@
+#### 1.0.3 - 12.03.2018
+* Adds options constructor without any validations
+
 #### 1.0.2 - 12.03.2018
 * Adds impersonate functionality. Well, the IdSrv has to support this.
 * Exposes all ctors of the Authenticator
