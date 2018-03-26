@@ -1,3 +1,6 @@
+#### 1.0.4 - 26.03.2018
+* Fixed authorization endpoint uri for refreshing tokens and impersonating a user
+
 #### 1.0.3 - 12.03.2018
 * Adds options constructor without any validations
 

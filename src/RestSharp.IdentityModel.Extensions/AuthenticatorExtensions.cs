@@ -35,7 +35,7 @@ namespace RestSharp
             var values = new Dictionary<string, string>();
             values.Add("acr_values", $"Impersonate:{username} access_token:{accessToken}");
 
-            var client = new TokenClient(options.Authority.AbsolutePath, options.ClientId, options.ClientSecret, AuthenticationStyle.BasicAuthentication);
+            var client = new TokenClient(authenticator.AuthorizationEndpoint.AbsoluteUri, options.ClientId, options.ClientSecret, AuthenticationStyle.BasicAuthentication);
             TokenResponse tokenResponse = await client.RequestResourceOwnerPasswordAsync("impersonate", Guid.NewGuid().ToString("n"), options.Scope, values).ConfigureAwait(false);
 
             return new Authenticator(authenticator, tokenResponse);
@@ -45,7 +45,7 @@ namespace RestSharp
         {
             var options = authenticator.TheOptions;
 
-            var client = new TokenClient(options.Authority.AbsolutePath, options.ClientId, options.ClientSecret, AuthenticationStyle.BasicAuthentication);
+            var client = new TokenClient(authenticator.AuthorizationEndpoint.AbsoluteUri, options.ClientId, options.ClientSecret, AuthenticationStyle.BasicAuthentication);
             TokenResponse tokenResponse = await client.RequestRefreshTokenAsync(refreshToken ?? authenticator.RefreshToken).ConfigureAwait(false);
             return new Authenticator(authenticator, tokenResponse);
         }
