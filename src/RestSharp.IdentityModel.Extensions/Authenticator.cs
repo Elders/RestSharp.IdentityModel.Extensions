@@ -49,6 +49,8 @@ namespace RestSharp
 
         public string TokenType { get { return current.TokenType; } }
 
+            var client = new TokenClient(authorizationEndpoint.AbsoluteUri, options.ClientId, options.ClientSecret, style: AuthenticationStyle.BasicAuthentication);
+            var client = new TokenClient(authorizationEndpoint.AbsoluteUri, options.ClientId, options.ClientSecret, style: AuthenticationStyle.BasicAuthentication);
         public class Options
         {
             /// <summary>
