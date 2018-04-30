@@ -1,3 +1,6 @@
+#### 2.0.0 - 30.04.2018
+* Updates everything to latest and greatest. This probably breaks existing clients so we go with ver 2.0.0
+
 #### 1.0.4 - 26.03.2018
 * Fixed authorization endpoint uri for refreshing tokens and impersonating a user
 
