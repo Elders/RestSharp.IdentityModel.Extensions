@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -26,45 +23,32 @@ namespace RestSharp
         {
             var settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
-            settings.Formatting = Formatting.Indented;
+            settings.Formatting = Formatting.None;
             settings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
             settings.ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor;
-
-#if NETSTANDARD2_0
             settings.ContractResolver = new ContractResolverWithPrivates();
-#else
-            var contractReslover = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
-            contractReslover.DefaultMembersSearchFlags = contractReslover.DefaultMembersSearchFlags | System.Reflection.BindingFlags.NonPublic;
-            settings.ContractResolver = contractReslover;
-#endif
+
             return settings;
         }
     }
 
-#if NETSTANDARD2_0
     public class ContractResolverWithPrivates : Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver
     {
-        protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
         {
-            var props = type
-                .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-                .Select(p => base.CreateProperty(p, memberSerialization))
-                .Union(type
-                    .GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-                    .Select(f => base.CreateProperty(f, memberSerialization)))
-                .ToList();
-            props.ForEach(p => { p.Writable = true; p.Readable = true; });
-            return props;
-        }
+            var prop = base.CreateProperty(member, memberSerialization);
 
-        override protected List<MemberInfo> GetSerializableMembers(Type objectType)
-        {
-            var props = objectType
-                .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Select(x => (MemberInfo)x)
-                .Union(objectType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-                .ToList();
-            return props;
+            if (!prop.Writable)
+            {
+                var property = member as PropertyInfo;
+                if (property != null)
+                {
+                    var hasPrivateSetter = property.GetSetMethod(true) != null;
+                    prop.Writable = hasPrivateSetter;
+                }
+            }
+
+            return prop;
         }
     }
-#endif
 }

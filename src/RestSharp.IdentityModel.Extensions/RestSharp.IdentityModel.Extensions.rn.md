@@ -1,3 +1,6 @@
+#### 2.0.1 - 03.05.2018
+* Fixes the implementation for deserializing private setter using ContractResolverWithPrivates
+
 #### 2.0.0 - 30.04.2018
 * Updates everything to latest and greatest. This probably breaks existing clients so we go with ver 2.0.0
 
