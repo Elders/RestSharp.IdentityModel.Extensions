@@ -1,3 +1,6 @@
+#### 3.0.0-beta0001 - 16.05.2018
+* Removed impersonation method
+
 #### 2.0.1 - 03.05.2018
 * Fixes the implementation for deserializing private setter using ContractResolverWithPrivates
 

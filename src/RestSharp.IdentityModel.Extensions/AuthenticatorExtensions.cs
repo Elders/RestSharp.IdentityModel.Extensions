@@ -25,22 +25,6 @@ namespace RestSharp
             return new Authenticator(authenticator, tokenResponse);
         }
 
-        public static async Task<Authenticator> ImpersonateAsync(this Authenticator authenticator, string username, string accessToken)
-        {
-            if (string.IsNullOrEmpty(username)) throw new ArgumentNullException(nameof(username));
-            if (string.IsNullOrEmpty(accessToken)) throw new ArgumentNullException(nameof(accessToken));
-
-            var options = authenticator.TheOptions;
-
-            var values = new Dictionary<string, string>();
-            values.Add("acr_values", $"Impersonate:{username} access_token:{accessToken}");
-
-            var client = new TokenClient(authenticator.AuthorizationEndpoint.AbsoluteUri, options.ClientId, options.ClientSecret, style: AuthenticationStyle.BasicAuthentication);
-            TokenResponse tokenResponse = await client.RequestResourceOwnerPasswordAsync("impersonate", Guid.NewGuid().ToString("n"), options.Scope, values).ConfigureAwait(false);
-
-            return new Authenticator(authenticator, tokenResponse);
-        }
-
         public static async Task<Authenticator> RefreshTokenAsync(this Authenticator authenticator, string refreshToken = null)
         {
             var options = authenticator.TheOptions;
