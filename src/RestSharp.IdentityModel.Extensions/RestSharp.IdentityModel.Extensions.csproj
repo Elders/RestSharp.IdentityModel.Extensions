@@ -1,48 +1,73 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
 
-    <!--Nuget-->
-    <PropertyGroup>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <PackageId>RestSharp.IdentityModel.Extensions</PackageId>
-        <PackageLicenseUrl>https://github.com/Elders/RestSharp.IdentityModel.Extensions/blob/master/LICENSE.md</PackageLicenseUrl>
-        <PackageProjectUrl>https://github.com/Elders/RestSharp.IdentityModel.Extensions</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/Elders/RestSharp.IdentityModel.Extensions</RepositoryUrl>
-        <RepositoryType>Framework</RepositoryType>
-        <Authors>Elders</Authors>
-    </PropertyGroup>
+  <!--Nuget-->
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <PackageId>RestSharp.IdentityModel.Extensions</PackageId>
+    <PackageLicenseUrl>https://github.com/Elders/RestSharp.IdentityModel.Extensions/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Elders/RestSharp.IdentityModel.Extensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Elders/RestSharp.IdentityModel.Extensions</RepositoryUrl>
+    <RepositoryType>Framework</RepositoryType>
+    <Authors>Elders</Authors>
+  </PropertyGroup>
 
+  <!--Nuget-->
+  <PropertyGroup>
+    <PackageId>RestSharp.IdentityModel.Extensions</PackageId>
+    <Product>RestSharp.IdentityModel.Extensions</Product>
+    <Title>RestSharp.IdentityModel.Extensions</Title>
+    <Authors>Elders OSS</Authors>
+    <Copyright>Copyright © Elders OSS 2013</Copyright>
+    <Description>RestSharp.IdentityModel.Extensions</Description>
+    <PackageTags>CQRS DDD ES Event store sourcing</PackageTags>
+    <PackageLicenseUrl>https://github.com/Elders/RestSharp.IdentityModel.Extensions/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Elders/RestSharp.IdentityModel.Extensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Elders/RestSharp.IdentityModel.Extensions.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyName>RestSharp.IdentityModel.Extensions</AssemblyName>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <RootNamespace>RestSharp</RootNamespace>
+  </PropertyGroup>
 
+  <!--netstandard2.0-->
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;LIBLOG_PORTABLE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
+  </ItemGroup>
 
-    <!--netstandard2.0-->
-    <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-        <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;LIBLOG_PORTABLE</DefineConstants>
-    </PropertyGroup>
-    <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-        <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
-    </ItemGroup>
+  <!--net45-->
+  <PropertyGroup Condition="'$(TargetFramework)'=='net452'">
+    <DefineConstants>TRACE;DEBUG;LIBLOG_PORTABLE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='net452'">
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
 
-    <!--net45-->
-    <PropertyGroup Condition="'$(TargetFramework)'=='net452'">
-        <DefineConstants>TRACE;DEBUG;LIBLOG_PORTABLE</DefineConstants>
-    </PropertyGroup>
-    <ItemGroup Condition="'$(TargetFramework)'=='net452'">
-        <Reference Include="mscorlib" />
-        <Reference Include="System" />
-        <Reference Include="System.Core" />
-        <Reference Include="Microsoft.CSharp" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="LibLog" Version="4.2.6" />
+    <PackageReference Include="IdentityModel " Version="3.2.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="RestSharp" Version="106.5.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Update="IdentityModel" Version="3.10.1" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="LibLog" Version="4.2.6" />
-        <PackageReference Include="IdentityModel " Version="3.2.0" />
-        <PackageReference Include="RestSharp" Version="106.2.2" />
-        <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    </ItemGroup>
+  <PropertyGroup>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <EmbedSources>true</EmbedSources>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Update="IdentityModel" Version="3.6.1" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.3" PrivateAssets="All" />
+  </ItemGroup>
 </Project>
