@@ -1,3 +1,6 @@
+#### 3.0.0-beta0002 - 07.11.2018
+* Updates packages and enhances the project file
+
 #### 3.0.0-beta0001 - 16.05.2018
 * Removed impersonation method
 
