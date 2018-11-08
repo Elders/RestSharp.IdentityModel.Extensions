@@ -1,3 +1,6 @@
+#### 3.0.0-beta0003 - 07.11.2018
+* Specify RestSharp version to 106.3.0 for net451
+
 #### 3.0.0-beta0002 - 07.11.2018
 * Updates packages and enhances the project file
 
