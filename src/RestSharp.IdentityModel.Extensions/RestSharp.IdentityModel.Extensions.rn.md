@@ -1,3 +1,6 @@
+#### 3.0.0-beta0004 - 11.11.2018
+* Reverts to RestSharp 106.3.1 => https://github.com/restsharp/RestSharp/issues/1198
+
 #### 3.0.0-beta0003 - 07.11.2018
 * Specify RestSharp version to 106.3.0 for net451
 
