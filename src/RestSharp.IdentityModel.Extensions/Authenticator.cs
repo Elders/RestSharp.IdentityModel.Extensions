@@ -33,6 +33,8 @@ namespace RestSharp
 
         public string Error { get { return current.Error; } }
 
+        public Exception Exception { get { return current.Exception; } }
+
         public double ExpiresIn { get { return current.ExpiresIn - (DateTime.UtcNow - InitializedAt).TotalSeconds; } }
 
         public string HttpErrorReason { get { return current.HttpErrorReason; } }

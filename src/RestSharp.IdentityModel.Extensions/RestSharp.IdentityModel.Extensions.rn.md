@@ -1,3 +1,6 @@
+#### 1.0.5 - 14.08.2020
+* Exposes exceptions from  TokenResponse to Authenticator
+
 #### 1.0.4 - 26.03.2018
 * Fixed authorization endpoint uri for refreshing tokens and impersonating a user
 
